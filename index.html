@@ -8,79 +8,95 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #e8622a;
+      --orange-dark: #d95c10;
+      --bg: #ecddd0;
+      --card-bg: #f0e4d4;
+      --text-dark: #1a1a1a;
+      --text-mid: #5c4a3a;
+      --text-light: #9a8272;
+      --poly: linear-gradient(140deg, #d6c698, #bba870, #cfc090);
+      --ring-color: #ddd2c4;
+    }
+
+    html { font-size: 16px; }
 
     body {
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
-      background-color: #ecddd0;
+      min-height: 100dvh;
+      background-color: var(--bg);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* ── Orange circles ── */
+    /* ── Background decorations ── */
     .circle {
       position: fixed;
       border-radius: 50%;
       z-index: 0;
-      background: #e8622a;
+      background: var(--orange);
+      pointer-events: none;
     }
-    .c1 { width: 220px; height: 220px; top: -85px;  right: -75px; }
-    .c2 { width: 170px; height: 170px; bottom: 100px; left: -65px; }
-    .c3 { width: 110px; height: 110px; bottom: -40px; left: 40px;  }
+    .c1 { width: clamp(120px, 30vw, 220px); height: clamp(120px, 30vw, 220px); top: clamp(-60px, -10vw, -85px); right: clamp(-50px, -10vw, -75px); }
+    .c2 { width: clamp(100px, 22vw, 170px); height: clamp(100px, 22vw, 170px); bottom: clamp(60px, 12vh, 100px); left: clamp(-45px, -8vw, -65px); }
+    .c3 { width: clamp(70px, 15vw, 110px); height: clamp(70px, 15vw, 110px); bottom: clamp(-30px, -5vw, -40px); left: clamp(20px, 5vw, 40px); }
 
-    /* ── Low-poly diamond shapes ── */
     .poly {
       position: fixed;
       z-index: 0;
-      background: linear-gradient(140deg, #d6c698, #bba870, #cfc090);
+      background: var(--poly);
+      pointer-events: none;
     }
     .p1 {
-      top: 155px; left: 12px;
-      width: 72px; height: 72px;
+      top: clamp(100px, 20vh, 155px); left: clamp(6px, 2vw, 12px);
+      width: clamp(48px, 8vw, 72px); height: clamp(48px, 8vw, 72px);
       clip-path: polygon(50% 0%,100% 38%,80% 100%,20% 100%,0% 38%);
     }
     .p2 {
-      bottom: 75px; right: 18px;
-      width: 85px; height: 85px;
+      bottom: clamp(50px, 10vh, 75px); right: clamp(10px, 2.5vw, 18px);
+      width: clamp(55px, 9vw, 85px); height: clamp(55px, 9vw, 85px);
       clip-path: polygon(50% 0%,100% 38%,80% 100%,20% 100%,0% 38%);
     }
     .p3 {
-      bottom: 230px; left: 8px;
-      width: 48px; height: 48px;
+      bottom: clamp(150px, 25vh, 230px); left: clamp(4px, 1.5vw, 8px);
+      width: clamp(32px, 5vw, 48px); height: clamp(32px, 5vw, 48px);
       clip-path: polygon(50% 0%,100% 38%,80% 100%,20% 100%,0% 38%);
       opacity: 0.7;
     }
 
-    /* ── White/cream torus ring ── */
     .ring {
       position: fixed;
-      top: 210px; right: 20px;
-      width: 50px; height: 50px;
+      top: clamp(140px, 22vh, 210px); right: clamp(12px, 3vw, 20px);
+      width: clamp(34px, 6vw, 50px); height: clamp(34px, 6vw, 50px);
       border-radius: 50%;
-      border: 14px solid #ddd2c4;
+      border: clamp(9px, 2vw, 14px) solid var(--ring-color);
       z-index: 0;
+      pointer-events: none;
     }
 
-    /* ── Curved arc line ── */
     .arc {
       position: fixed;
-      left: -110px; top: 50%;
+      left: clamp(-90px, -15vw, -110px); top: 50%;
       transform: translateY(-50%);
-      width: 280px; height: 280px;
+      width: clamp(200px, 35vw, 280px); height: clamp(200px, 35vw, 280px);
       border-radius: 50%;
       border: 1px solid rgba(150,120,90,0.18);
       z-index: 0;
+      pointer-events: none;
     }
 
-    /* ── Dot grid ── */
     .dots {
       position: fixed;
-      top: 28px; left: 24px;
+      top: clamp(16px, 3vh, 28px); left: clamp(14px, 3vw, 24px);
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 7px;
+      gap: clamp(5px, 1vw, 7px);
       z-index: 0;
+      pointer-events: none;
     }
     .dots b {
       display: block;
@@ -89,13 +105,13 @@
       background: rgba(130,95,65,0.28);
     }
 
-    /* ── Three dots top-right area ── */
     .dots-tr {
       position: fixed;
-      top: 26px; right: 90px;
+      top: clamp(16px, 3vh, 26px); right: clamp(60px, 12vw, 90px);
       display: flex;
       gap: 5px;
       z-index: 0;
+      pointer-events: none;
     }
     .dots-tr b {
       display: block;
@@ -109,68 +125,73 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
       margin: 0 auto;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 28px 50px;
+      padding: clamp(40px, 8vh, 70px) clamp(20px, 6vw, 36px) clamp(36px, 6vh, 56px);
     }
 
-    /* ── Logo slot ── */
+    /* ── Logo ── */
     .logo-slot {
       width: 100%;
-      max-width: 300px;
-      min-height: 100px;
-      margin-bottom: 26px;
+      max-width: clamp(180px, 55vw, 300px);
+      min-height: clamp(60px, 12vh, 100px);
+      margin-bottom: clamp(16px, 3vh, 26px);
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .logo-slot img { width: 100%; height: auto; display: block; }
+    .logo-slot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
     /* ── Tagline ── */
     .tagline {
-      font-size: 11px;
+      font-size: clamp(9px, 2.2vw, 11px);
       font-weight: 700;
-      letter-spacing: 5px;
-      color: #d95c10;
+      letter-spacing: clamp(3px, 1vw, 5px);
+      color: var(--orange-dark);
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: clamp(8px, 2vh, 12px);
     }
 
     /* ── Dot divider ── */
     .dot-div {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: clamp(6px, 2vw, 10px);
+      margin-bottom: clamp(14px, 2.5vh, 20px);
     }
     .dot-div em {
       display: block;
-      width: 55px; height: 1px;
-      background: #d95c10;
+      width: clamp(36px, 10vw, 55px); height: 1px;
+      background: var(--orange-dark);
       opacity: 0.45;
     }
     .dot-div s {
       display: block;
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: #d95c10;
+      background: var(--orange-dark);
       text-decoration: none;
     }
 
     /* ── Description ── */
     .desc {
       text-align: center;
-      color: #5c4a3a;
-      font-size: 14px;
+      color: var(--text-mid);
+      font-size: clamp(12px, 3.2vw, 14px);
       font-weight: 400;
       line-height: 1.85;
-      margin-bottom: 44px;
-      max-width: 300px;
+      margin-bottom: clamp(28px, 6vh, 44px);
+      max-width: clamp(220px, 70vw, 300px);
     }
 
     /* ── Cards ── */
@@ -178,15 +199,15 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: clamp(10px, 2.5vh, 16px);
     }
 
     .link-card {
       width: 100%;
       text-decoration: none;
-      background: #f0e4d4;
+      background: var(--card-bg);
       border-radius: 60px;
-      padding: 9px 26px 9px 9px;
+      padding: clamp(6px, 1.5vh, 9px) clamp(16px, 4vw, 26px) clamp(6px, 1.5vh, 9px) clamp(6px, 1.5vh, 9px);
       display: flex;
       align-items: center;
       box-shadow:
@@ -194,14 +215,20 @@
         0 1px 4px  rgba(100,60,20,0.07);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .link-card:hover {
+    .link-card:hover,
+    .link-card:focus {
       transform: translateY(-3px);
       box-shadow: 0 10px 28px rgba(100,60,20,0.16);
+      outline: none;
+    }
+    .link-card:active {
+      transform: translateY(-1px);
     }
 
     /* Icon circle */
     .ic {
-      width: 58px; height: 58px;
+      width: clamp(44px, 12vw, 58px);
+      height: clamp(44px, 12vw, 58px);
       border-radius: 50%;
       flex-shrink: 0;
       overflow: hidden;
@@ -217,45 +244,106 @@
       width: 1px;
       height: 30px;
       background: rgba(160,120,80,0.28);
-      margin: 0 20px;
+      margin: 0 clamp(12px, 3.5vw, 20px);
       flex-shrink: 0;
     }
 
     /* Label */
     .lbl {
       flex: 1;
-      font-size: 15px;
+      font-size: clamp(12px, 3.2vw, 15px);
       font-weight: 800;
-      letter-spacing: 2px;
-      color: #1a1a1a;
+      letter-spacing: clamp(1px, 0.5vw, 2px);
+      color: var(--text-dark);
     }
 
     /* Arrow */
     .arr {
-      font-size: 20px;
-      color: #d95c10;
+      font-size: clamp(16px, 4vw, 20px);
+      color: var(--orange-dark);
       line-height: 1;
       transition: transform 0.2s ease;
+      flex-shrink: 0;
     }
     .link-card:hover .arr { transform: translateX(5px); }
 
     /* ── Footer ── */
     footer {
-      margin-top: 50px;
+      margin-top: clamp(32px, 6vh, 50px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: clamp(8px, 2vh, 12px);
     }
     .ft-line {
       width: 60px; height: 1px;
-      background: #d95c10;
+      background: var(--orange-dark);
       opacity: 0.38;
     }
     footer p {
-      font-size: 11px;
-      color: #9a8272;
+      font-size: clamp(9px, 2.2vw, 11px);
+      color: var(--text-light);
       text-align: center;
+    }
+
+    /* ── Tablet (601px – 900px) ── */
+    @media (min-width: 601px) {
+      .page {
+        padding: 70px 48px 56px;
+      }
+      .logo-slot {
+        max-width: 260px;
+      }
+    }
+
+    /* ── Desktop (901px+) ── */
+    @media (min-width: 901px) {
+      .page {
+        max-width: 560px;
+        padding: 80px 40px 64px;
+      }
+      .logo-slot {
+        max-width: 300px;
+      }
+      .desc {
+        max-width: 320px;
+      }
+    }
+
+    /* ── Very small phones (< 360px) ── */
+    @media (max-width: 359px) {
+      .tagline {
+        letter-spacing: 2px;
+      }
+      .sep {
+        margin: 0 10px;
+      }
+    }
+
+    /* ── Landscape mobile ── */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .page {
+        justify-content: flex-start;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      .logo-slot {
+        min-height: 50px;
+        max-width: 160px;
+        margin-bottom: 10px;
+      }
+      .tagline { margin-bottom: 6px; }
+      .dot-div { margin-bottom: 8px; }
+      .desc { margin-bottom: 16px; }
+      .links { gap: 8px; }
+      footer { margin-top: 20px; }
+      /* Hide heavy bg decorations in landscape to avoid clutter */
+      .arc, .p3 { display: none; }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .link-card, .arr { transition: none; }
     }
   </style>
 </head>
@@ -284,7 +372,6 @@
 
   <main class="page">
 
-    <!-- ✏️ DROP YOUR LOGO HERE -->
     <div class="logo-slot">
       <img src="qualskills new logo (1) (2).png" alt="Adinnova Agency">
     </div>
@@ -296,29 +383,26 @@
     </div>
 
     <p class="desc">
-      Votre marque mérite mieux que l'ordinaire <br>on est là pour ça.
+      Votre marque mérite mieux que l'ordinaire&nbsp;—&nbsp;on est là pour ça.
     </p>
 
     <div class="links">
 
-      <!-- ✏️ DROP YOUR INSTAGRAM ICON inside .ic -->
-      <a class="link-card" href="https://www.instagram.com/adinnova.agency/" target="_blank">
+      <a class="link-card" href="https://www.instagram.com/adinnova.agency/" target="_blank" rel="noopener noreferrer">
         <div class="ic"><img src="Instagram_logo_2022.svg" alt="Instagram"></div>
         <div class="sep"></div>
         <div class="lbl">INSTAGRAM</div>
         <div class="arr">&#8594;</div>
       </a>
 
-      <!-- ✏️ DROP YOUR FACEBOOK ICON inside .ic -->
-      <a class="link-card" href="https://www.facebook.com/profile.php?id=61569210123634" target="_blank">
+      <a class="link-card" href="https://www.facebook.com/profile.php?id=61569210123634" target="_blank" rel="noopener noreferrer">
         <div class="ic"><img src="2023_Facebook_icon.svg" alt="Facebook"></div>
         <div class="sep"></div>
         <div class="lbl">FACEBOOK</div>
         <div class="arr">&#8594;</div>
       </a>
 
-      <!-- ✏️ DROP YOUR TIKTOK ICON inside .ic -->
-      <a class="link-card" href="https://www.tiktok.com/@adinnova.agency" target="_blank">
+      <a class="link-card" href="https://www.tiktok.com/@adinnova.agency" target="_blank" rel="noopener noreferrer">
         <div class="ic"><img src="Tiktok_icon.svg" alt="TikTok"></div>
         <div class="sep"></div>
         <div class="lbl">TIKTOK</div>
